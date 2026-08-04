@@ -1,5 +1,14 @@
 [
   {
+    "id": "p178587656001142zqb",
+    "texto": "Plan para restablecer operacion optima de Anderson",
+    "responsable": "Jesus Gonzalez",
+    "prioridad": "alta",
+    "fecha": "2026-08-06",
+    "estatus": "abierto",
+    "creado": "2026-08-04"
+  },
+  {
     "id": "p1785876471744xyrlq",
     "texto": "Revisar con Trespalacios la modificacion de ringfeeders en hang",
     "responsable": "",

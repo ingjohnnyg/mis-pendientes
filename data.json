@@ -1,5 +1,14 @@
 [
   {
+    "id": "p17858865840604ig5c",
+    "texto": "Implementar nuevo OEE",
+    "responsable": "",
+    "prioridad": "alta",
+    "fecha": "2026-08-04",
+    "estatus": "abierto",
+    "creado": "2026-08-04"
+  },
+  {
     "id": "p17858810223370hm16",
     "texto": "Revisar replenishment de dados chinos con Enrique",
     "responsable": "",

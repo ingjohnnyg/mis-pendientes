@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Pendientes" />
+<title>Pendientes</title>
+<style>
+  :root{
+    --bg:#e9ebe5; --panel:#f8f8f5; --panel-line:#d7d9d0; --ink:#1f2421; --ink-soft:#5b6158;
+    --line:#c7cabf; --amber:#d99a2b; --amber-soft:#f4e3bd; --red:#b0402c; --red-soft:#f0d7cf;
+    --green:#4c7a5d; --green-soft:#dbe8dd; --steel:#3f5a68; --steel-soft:#d9e2e4; --radius:3px;
+    --brand:#1c4d7a; --brand-light:#2e6ba3;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;background:var(--bg);}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--ink);
+       padding-bottom:env(safe-area-inset-bottom);}
+  #app{min-height:100vh;}
+  .plate{
+    background:var(--brand); color:var(--panel); padding:calc(env(safe-area-inset-top) + 18px) 20px 16px;
+    position:relative; border-bottom:6px solid transparent;
+    border-image:repeating-linear-gradient(-45deg,var(--brand-light) 0 14px, var(--brand) 14px 28px) 6;
+    display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
+  }
+  .plate h1{margin:0;font-size:24px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;}
+  .plate .sub{margin-top:4px;font-size:12px;color:#cfe0ef;}
+  .gear{background:none;border:1px solid #4d7ba3;color:#dbe9f4;border-radius:50%;width:34px;height:34px;
+        flex:none;font-size:16px;cursor:pointer;}
+  .sync-line{padding:6px 20px;font-size:11px;color:var(--ink-soft);display:flex;align-items:center;gap:6px;}
+  .dot-status{width:7px;height:7px;border-radius:50%;background:#9aa093;}
+  .dot-status.ok{background:var(--green);}
+  .dot-status.err{background:var(--red);}
+  .dot-status.busy{background:var(--amber);}
+  .save-warn{margin:10px 20px 0;background:var(--red-soft);color:var(--red);border:1px solid var(--red);
+             border-radius:var(--radius);padding:9px 13px;font-size:12.5px;font-weight:600;}
+  .stats{display:flex;margin:14px 20px 0;border:1px solid var(--line);border-radius:var(--radius);
+         overflow:hidden;background:var(--panel);}
+  .stat{flex:1;padding:11px 8px;border-right:1px solid var(--line);cursor:pointer;text-align:center;}
+  .stat:last-child{border-right:none;}
+  .stat.active{background:#eae7dc;}
+  .stat .n{font-size:20px;font-weight:800;line-height:1;}
+  .stat .l{font-size:9px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft);margin-top:3px;}
+  .stat.vencido .n{color:var(--red);} .stat.hoy .n{color:var(--amber);} .stat.semana .n{color:var(--steel);}
+  .scope-row{margin:10px 20px 0;}
+  .scope-row select{width:100%;padding:9px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;font-size:13px;color:var(--ink);font-family:inherit;}
+  .panel{margin:14px 20px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:14px;}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  label{display:block;font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);margin:8px 0 4px;}
+  label:first-child{margin-top:0;}
+  input[type=text],input[type=date],input[type=password],select{
+    width:100%;padding:9px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;
+    font-size:14px;color:var(--ink);font-family:inherit;}
+  button{font-family:inherit;cursor:pointer;border:none;border-radius:var(--radius);}
+  .btn-add{grid-column:1 / -1;background:var(--ink);color:var(--panel);padding:10px;font-size:13px;
+           font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-top:6px;}
+  .groups{margin:0 20px 28px;}
+  .group{margin-bottom:16px;}
+  .group-head{display:flex;align-items:center;gap:8px;margin-bottom:8px;}
+  .dot{width:9px;height:9px;border-radius:50%;flex:none;}
+  .dot.vencido{background:var(--red);} .dot.hoy{background:var(--amber);} .dot.semana{background:var(--steel);}
+  .dot.proximo{background:var(--ink-soft);} .dot.sinfecha{background:#b8bcae;} .dot.cerrado{background:var(--green);}
+  .group-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);}
+  .group-count{font-size:10.5px;color:var(--ink-soft);background:var(--panel-line);border-radius:10px;padding:1px 7px;}
+  .card{display:flex;align-items:flex-start;gap:10px;background:var(--panel);border:1px solid var(--line);
+        border-left:4px solid var(--line);border-radius:var(--radius);padding:10px 11px;margin-bottom:6px;}
+  .card.vencido{border-left-color:var(--red);} .card.hoy{border-left-color:var(--amber);}
+  .card.semana{border-left-color:var(--steel);} .card.cerrado{border-left-color:var(--green);opacity:.6;}
+  .check{margin-top:2px;width:18px;height:18px;border:1.5px solid var(--ink-soft);border-radius:3px;background:#fff;
+        cursor:pointer;flex:none;display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;}
+  .check.on{background:var(--green);border-color:var(--green);}
+  .card-body{flex:1;min-width:0;}
+  .card-text{font-size:14.5px;line-height:1.35;word-break:break-word;}
+  .card.cerrado .card-text{text-decoration:line-through;}
+  .card-meta{margin-top:5px;display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
+  .tag{font-size:10px;padding:2px 7px;border-radius:10px;text-transform:uppercase;letter-spacing:.03em;font-weight:700;}
+  .tag.origen{background:var(--steel-soft);color:var(--steel);}
+  .tag.prioridad-alta{background:var(--red-soft);color:var(--red);}
+  .tag.prioridad-media{background:var(--amber-soft);color:#8a651c;}
+  .tag.prioridad-baja{background:var(--green-soft);color:var(--green);}
+  .fecha-txt{font-size:11px;color:var(--ink-soft);}
+  .del{background:none;color:var(--ink-soft);font-size:18px;padding:2px 6px;flex:none;line-height:1;}
+  .empty{text-align:center;padding:26px 10px;color:var(--ink-soft);font-size:13px;border:1px dashed var(--line);border-radius:var(--radius);}
+  .loading{padding:40px;text-align:center;color:var(--ink-soft);font-size:13px;}
+
+  .modal-back{position:fixed;inset:0;background:rgba(20,22,19,.55);display:flex;align-items:flex-end;
+              justify-content:center;z-index:20;}
+  .modal{background:var(--panel);width:100%;max-width:480px;border-radius:14px 14px 0 0;padding:20px 20px calc(24px + env(safe-area-inset-bottom));}
+  .modal h2{margin:0 0 4px;font-size:17px;}
+  .modal p{margin:0 0 14px;font-size:12.5px;color:var(--ink-soft);line-height:1.4;}
+  .modal .btn-add{margin-top:14px;}
+  .modal .err{background:var(--red-soft);color:var(--red);font-size:12px;padding:8px 10px;border-radius:var(--radius);margin-top:10px;}
+</style>
+</head>
+<body>
+<div id="app"><div class="loading">Cargando…</div></div>
+
+<script>
+(function(){
+  const DATA_PATH = 'data.json';
+  const CFG_KEY = 'pendientes-gh-cfg';
+  const CACHE_KEY = 'pendientes-cache';
+
+  let cfg = null;
+  try{ cfg = JSON.parse(localStorage.getItem(CFG_KEY) || 'null'); }catch(e){ cfg = null; }
+
+  let items = [];
+  let sha = null;
+  let filter = 'all';
+  let scope = 'all'; // all | mine | delegated | <nombre de responsable>
+  let loaded = false;
+  let showSettings = !cfg;
+  let syncStatus = 'idle'; // idle | busy | ok | err
+  let syncError = '';
+  let saving = false;
+  let pendingSave = false;
+
+  const BUCKET_LABELS = {vencido:'Vencido',hoy:'Vence hoy',semana:'Esta semana',proximo:'Próximo',sinfecha:'Sin fecha',cerrado:'Cerrado'};
+  const BUCKET_ORDER = ['vencido','hoy','semana','proximo','sinfecha','cerrado'];
+
+  function todayISO(){ const d=new Date(); d.setHours(0,0,0,0); return d.toISOString().slice(0,10); }
+
+  function bucketOf(it){
+    if(it.estatus==='cerrado') return 'cerrado';
+    if(!it.fecha) return 'sinfecha';
+    const today = todayISO();
+    const in7 = new Date(); in7.setDate(in7.getDate()+7);
+    const in7ISO = in7.toISOString().slice(0,10);
+    if(it.fecha < today) return 'vencido';
+    if(it.fecha === today) return 'hoy';
+    if(it.fecha <= in7ISO) return 'semana';
+    return 'proximo';
+  }
+
+  function esc(s){ return (s||'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+  function utf8ToB64(str){ return btoa(String.fromCharCode(...new TextEncoder().encode(str))); }
+  function b64ToUtf8(b64){ return new TextDecoder().decode(Uint8Array.from(atob(b64.replace(/\n/g,'')), c=>c.charCodeAt(0))); }
+
+  function apiUrl(){ return `https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${DATA_PATH}`; }
+  function apiHeaders(extra){
+    return Object.assign({ Authorization: `token ${cfg.token}`, Accept: 'application/vnd.github+json' }, extra||{});
+  }
+
+  async function ghLoad(){
+    const res = await fetch(apiUrl(), { headers: apiHeaders() });
+    if(res.status === 404){ return { items: [], sha: null }; }
+    if(!res.ok) throw new Error('GET '+res.status);
+    const json = await res.json();
+    const text = b64ToUtf8(json.content || '');
+    return { items: text ? JSON.parse(text) : [], sha: json.sha };
+  }
+
+  async function ghSave(list, prevSha){
+    const body = { message: 'Actualizar pendientes', content: utf8ToB64(JSON.stringify(list, null, 2)) };
+    if(prevSha) body.sha = prevSha;
+    const res = await fetch(apiUrl(), {
+      method: 'PUT',
+      headers: apiHeaders({'Content-Type':'application/json'}),
+      body: JSON.stringify(body)
+    });
+    if(res.status === 409){ throw {conflict:true}; }
+    if(!res.ok){ const t = await res.text(); throw new Error('PUT '+res.status+': '+t); }
+    const json = await res.json();
+    return json.content.sha;
+  }
+
+  function cacheLocal(){
+    try{ localStorage.setItem(CACHE_KEY, JSON.stringify({items, sha})); }catch(e){}
+  }
+
+  async function init(){
+    if(!cfg){ loaded = true; render(); return; }
+    try{
+      const cached = JSON.parse(localStorage.getItem(CACHE_KEY)||'null');
+      if(cached){ items = cached.items; sha = cached.sha; }
+    }catch(e){}
+    loaded = true;
+    render();
+    await refreshFromRemote(true);
+  }
+
+  async function refreshFromRemote(initial){
+    if(!cfg || saving) return;
+    syncStatus = 'busy'; if(!initial) render();
+    try{
+      const r = await ghLoad();
+      items = r.items; sha = r.sha;
+      cacheLocal();
+      syncStatus = 'ok'; syncError='';
+      render();
+    }catch(e){
+      syncStatus = 'err'; syncError = 'No se pudo conectar con GitHub. Revisando de nuevo…';
+      render();
+    }
+  }
+
+  let saveTimer = null;
+  function scheduleSave(){
+    cacheLocal();
+    if(saveTimer) clearTimeout(saveTimer);
+    saveTimer = setTimeout(doSave, 500);
+  }
+
+  async function doSave(){
+    if(!cfg) return;
+    saving = true; syncStatus='busy'; render();
+    try{
+      const newSha = await ghSave(items, sha);
+      sha = newSha;
+      cacheLocal();
+      syncStatus = 'ok'; syncError='';
+    }catch(e){
+      if(e && e.conflict){
+        try{
+          const r = await ghLoad();
+          sha = r.sha;
+          const newSha = await ghSave(items, sha);
+          sha = newSha; cacheLocal();
+          syncStatus='ok'; syncError='';
+        }catch(e2){
+          syncStatus='err'; syncError='Conflicto al guardar. Vuelve a intentar en un momento.';
+        }
+      } else {
+        syncStatus='err'; syncError='No se pudo guardar en GitHub. Reintentando…';
+        saveTimer = setTimeout(doSave, 4000);
+      }
+    }
+    saving = false;
+    render();
+  }
+
+  function addItem(texto, responsable, prioridad, fecha){
+    items.unshift({ id:'p'+Date.now()+Math.random().toString(36).slice(2,7), texto, responsable, prioridad, fecha, estatus:'abierto', creado: todayISO() });
+    scheduleSave(); render();
+  }
+  function toggleClose(id){
+    const it = items.find(i=>i.id===id);
+    if(it){ it.estatus = it.estatus==='cerrado' ? 'abierto' : 'cerrado'; scheduleSave(); render(); }
+  }
+  function removeItem(id){ items = items.filter(i=>i.id!==id); scheduleSave(); render(); }
+
+  async function connect(owner, repo, token){
+    cfg = { owner: owner.trim(), repo: repo.trim(), token: token.trim() };
+    try{
+      const r = await ghLoad();
+      items = r.items; sha = r.sha;
+      if(r.sha === null){
+        const newSha = await ghSave(items.length ? items : [], null);
+        sha = newSha;
+      }
+      localStorage.setItem(CFG_KEY, JSON.stringify(cfg));
+      cacheLocal();
+      showSettings = false;
+      syncStatus='ok'; syncError='';
+      render();
+    }catch(e){
+      throw e;
+    }
+  }
+
+  function render(){
+    const app = document.getElementById('app');
+    if(!loaded){ app.innerHTML = '<div class="loading">Cargando…</div>'; return; }
+
+    if(showSettings){
+      app.innerHTML = settingsHtml();
+      wireSettings();
+      return;
+    }
+
+    const counts = {vencido:0, hoy:0, semana:0, abiertos:0};
+    items.forEach(it=>{
+      if(it.estatus!=='cerrado'){
+        counts.abiertos++;
+        const b = bucketOf(it);
+        if(b==='vencido') counts.vencido++;
+        if(b==='hoy') counts.hoy++;
+        if(b==='semana') counts.semana++;
+      }
+    });
+
+    let visible = filter==='all' ? items.filter(it=>it.estatus!=='cerrado') : items.filter(it=>bucketOf(it)===filter);
+    if(scope==='mine') visible = visible.filter(it=>!it.responsable);
+    else if(scope==='delegated') visible = visible.filter(it=>!!it.responsable);
+    else if(scope!=='all') visible = visible.filter(it=>it.responsable===scope);
+
+    const delegados = Array.from(new Set(items.filter(it=>it.responsable).map(it=>it.responsable))).sort();
+    const groups = {};
+    visible.forEach(it=>{ const b=bucketOf(it); (groups[b]=groups[b]||[]).push(it); });
+    let groupsHtml = '';
+    const order = filter==='all' ? BUCKET_ORDER.filter(b=>b!=='cerrado') : [filter];
+    order.forEach(b=>{
+      const list = groups[b];
+      if(!list || !list.length) return;
+      list.sort((a,c)=>(a.fecha||'9999').localeCompare(c.fecha||'9999'));
+      groupsHtml += `<div class="group">
+        <div class="group-head"><span class="dot ${b}"></span><span class="group-title">${BUCKET_LABELS[b]}</span><span class="group-count">${list.length}</span></div>
+        ${list.map(cardHtml).join('')}
+      </div>`;
+    });
+    if(!groupsHtml) groupsHtml = `<div class="empty">${filter==='all' ? 'Sin pendientes abiertos. Agrega uno arriba.' : 'Nada en esta categoría.'}</div>`;
+
+    const statusDot = syncStatus==='ok' ? 'ok' : syncStatus==='busy' ? 'busy' : syncStatus==='err' ? 'err' : '';
+    const statusTxt = syncStatus==='ok' ? 'Sincronizado' : syncStatus==='busy' ? 'Sincronizando…' : syncStatus==='err' ? 'Sin conexión con GitHub' : '';
+
+    app.innerHTML = `
+      <div class="plate">
+        <div>
+          <h1>Pendientes</h1>
+          <div class="sub">Tuyos y los que delegas — en un solo lugar.</div>
+        </div>
+        <button class="gear" id="btn-settings" title="Configuración">⚙</button>
+      </div>
+      <div class="sync-line"><span class="dot-status ${statusDot}"></span>${statusTxt}</div>
+      ${syncStatus==='err' ? `<div class="save-warn">${syncError}</div>` : ''}
+
+      <div class="stats">
+        <div class="stat vencido ${filter==='vencido'?'active':''}" data-f="vencido"><div class="n">${counts.vencido}</div><div class="l">Vencidos</div></div>
+        <div class="stat hoy ${filter==='hoy'?'active':''}" data-f="hoy"><div class="n">${counts.hoy}</div><div class="l">Hoy</div></div>
+        <div class="stat semana ${filter==='semana'?'active':''}" data-f="semana"><div class="n">${counts.semana}</div><div class="l">Semana</div></div>
+        <div class="stat ${filter==='all'?'active':''}" data-f="all"><div class="n">${counts.abiertos}</div><div class="l">Abiertos</div></div>
+        <div class="stat ${filter==='cerrado'?'active':''}" data-f="cerrado"><div class="n">${items.filter(i=>i.estatus==='cerrado').length}</div><div class="l">Cerrados</div></div>
+      </div>
+
+      <div class="scope-row">
+        <select id="in-scope">
+          <option value="all" ${scope==='all'?'selected':''}>Todas</option>
+          <option value="mine" ${scope==='mine'?'selected':''}>Mías</option>
+          <option value="delegated" ${scope==='delegated'?'selected':''}>Delegadas (todas)</option>
+          ${delegados.map(d=>`<option value="${esc(d)}" ${scope===d?'selected':''}>Delegada a: ${esc(d)}</option>`).join('')}
+        </select>
+      </div>
+
+      <div class="panel">
+        <label>Pendiente</label>
+        <input type="text" id="in-texto" placeholder="Qué hay que hacer" />
+        <div class="form-row">
+          <div><label>Delegado a (opcional)</label>
+            <input type="text" id="in-responsable" placeholder="Déjalo vacío si es tuyo" />
+          </div>
+          <div><label>Prioridad</label>
+            <select id="in-prioridad"><option value="alta">Alta</option><option value="media" selected>Media</option><option value="baja">Baja</option></select>
+          </div>
+        </div>
+        <label>Compromiso</label>
+        <input type="date" id="in-fecha" />
+        <button class="btn-add" id="btn-add">Agregar</button>
+      </div>
+
+      <div class="groups">${groupsHtml}</div>
+    `;
+
+    document.querySelectorAll('.stat').forEach(el=>el.addEventListener('click', ()=>{ filter = el.getAttribute('data-f'); render(); }));
+    document.getElementById('btn-add').addEventListener('click', onAdd);
+    document.getElementById('in-texto').addEventListener('keydown', e=>{ if(e.key==='Enter') onAdd(); });
+    document.getElementById('btn-settings').addEventListener('click', ()=>{ showSettings=true; render(); });
+    document.getElementById('in-scope').addEventListener('change', e=>{ scope = e.target.value; render(); });
+  }
+
+  function onAdd(){
+    const texto = document.getElementById('in-texto').value.trim();
+    if(!texto) return;
+    const responsable = document.getElementById('in-responsable').value.trim();
+    const prioridad = document.getElementById('in-prioridad').value;
+    const fecha = document.getElementById('in-fecha').value;
+    addItem(texto, responsable, prioridad, fecha);
+    document.getElementById('in-texto').value='';
+    document.getElementById('in-responsable').value='';
+    document.getElementById('in-fecha').value='';
+    document.getElementById('in-texto').focus();
+  }
+
+  function cardHtml(it){
+    const b = bucketOf(it);
+    const fechaTxt = it.fecha ? new Date(it.fecha+'T00:00:00').toLocaleDateString('es-MX',{day:'numeric',month:'short'}) : '';
+    return `<div class="card ${b}">
+      <div class="check ${it.estatus==='cerrado'?'on':''}" data-id="${it.id}" data-action="toggle">${it.estatus==='cerrado'?'✓':''}</div>
+      <div class="card-body">
+        <div class="card-text">${esc(it.texto)}</div>
+        <div class="card-meta">
+          ${it.responsable ? `<span class="tag origen">Delegada: ${esc(it.responsable)}</span>` : ''}
+          <span class="tag prioridad-${it.prioridad}">${it.prioridad}</span>
+          ${fechaTxt ? `<span class="fecha-txt">${fechaTxt}</span>` : ''}
+        </div>
+      </div>
+      <button class="del" data-id="${it.id}" data-action="del" title="Eliminar">×</button>
+    </div>`;
+  }
+
+  function settingsHtml(hasError){
+    return `<div class="modal-back"><div class="modal">
+      <h2>Conectar con GitHub</h2>
+      <p>Estos datos se guardan solo en este dispositivo. Se usan para leer y escribir tu lista de pendientes en tu repositorio.</p>
+      <label>Usuario de GitHub</label>
+      <input type="text" id="cfg-owner" placeholder="tu-usuario" value="${cfg&&cfg.owner?esc(cfg.owner):''}" />
+      <label>Nombre del repositorio</label>
+      <input type="text" id="cfg-repo" placeholder="mis-pendientes" value="${cfg&&cfg.repo?esc(cfg.repo):''}" />
+      <label>Token de acceso</label>
+      <input type="password" id="cfg-token" placeholder="ghp_..." value="${cfg&&cfg.token?esc(cfg.token):''}" />
+      <div id="cfg-err"></div>
+      <button class="btn-add" id="btn-connect">Conectar</button>
+      ${cfg ? `<button class="btn-add" id="btn-cancel" style="background:var(--panel-line);color:var(--ink);margin-top:8px;">Cancelar</button>` : ''}
+    </div></div>`;
+  }
+
+  function wireSettings(){
+    document.getElementById('btn-connect').addEventListener('click', async ()=>{
+      const owner = document.getElementById('cfg-owner').value;
+      const repo = document.getElementById('cfg-repo').value;
+      const token = document.getElementById('cfg-token').value;
+      const errEl = document.getElementById('cfg-err');
+      if(!owner || !repo || !token){ errEl.innerHTML = '<div class="err">Llena los tres campos.</div>'; return; }
+      errEl.innerHTML = '<div class="err" style="background:var(--steel-soft);color:var(--steel);">Conectando…</div>';
+      try{
+        await connect(owner, repo, token);
+      }catch(e){
+        errEl.innerHTML = '<div class="err">No se pudo conectar. Revisa el usuario, el nombre del repositorio y que el token tenga permiso de Contents (Read and write).</div>';
+      }
+    });
+    const cancelBtn = document.getElementById('btn-cancel');
+    if(cancelBtn) cancelBtn.addEventListener('click', ()=>{ showSettings=false; render(); });
+  }
+
+  document.addEventListener('click', function(e){
+    const t = e.target;
+    if(t.getAttribute && t.getAttribute('data-action')==='toggle') toggleClose(t.getAttribute('data-id'));
+    if(t.getAttribute && t.getAttribute('data-action')==='del'){
+      const it = items.find(i=>i.id===t.getAttribute('data-id'));
+      const nombre = it ? it.texto : 'este pendiente';
+      if(window.confirm(`¿Eliminar "${nombre}"? Esta acción no se puede deshacer.`)){
+        removeItem(t.getAttribute('data-id'));
+      }
+    }
+  });
+  document.addEventListener('visibilitychange', ()=>{ if(document.visibilityState==='visible') refreshFromRemote(); });
+  window.addEventListener('focus', ()=>refreshFromRemote());
+
+  init();
+})();
+</script>
+</body>
+</html>

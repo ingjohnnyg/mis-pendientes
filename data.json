@@ -1,5 +1,14 @@
 [
   {
+    "id": "p178582135575741491",
+    "texto": "Popuesta para mueble de etiquetas en hang",
+    "responsable": "Hector Mercado",
+    "prioridad": "media",
+    "fecha": "2026-08-04",
+    "estatus": "abierto",
+    "creado": "2026-08-03"
+  },
+  {
     "id": "p1785821304833sbsg6",
     "texto": "Implementar auditoria 5S en escritorios",
     "responsable": "Hector Mercado",

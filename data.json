@@ -1,5 +1,14 @@
 [
   {
+    "id": "p1785945617125lbh4v",
+    "texto": "Plan de seguimiento para cortadoras de panel",
+    "responsable": "",
+    "prioridad": "alta",
+    "fecha": "2026-08-05",
+    "estatus": "abierto",
+    "creado": "2026-08-05"
+  },
+  {
     "id": "p17858865840604ig5c",
     "texto": "Implementar nuevo OEE",
     "responsable": "",

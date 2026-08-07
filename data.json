@@ -1,5 +1,14 @@
 [
   {
+    "id": "p1786146142295pbr8k",
+    "texto": "Plan de 5S en maquina Jumbo, accidente",
+    "responsable": "",
+    "prioridad": "alta",
+    "fecha": "2026-08-10",
+    "estatus": "abierto",
+    "creado": "2026-08-07"
+  },
+  {
     "id": "p17859480791577wnbt",
     "texto": "Actualizar lay out para juntar maquinas hang y widmann 10",
     "responsable": "",

@@ -83,6 +83,9 @@
   .tag.prioridad-media{background:var(--amber-soft);color:#8a651c;}
   .tag.prioridad-baja{background:var(--green-soft);color:var(--green);}
   .fecha-txt{font-size:11px;color:var(--ink-soft);}
+  .edit-date-btn{background:none;border:1px dashed var(--line);color:var(--ink-soft);font-size:11px;
+                 padding:2px 8px;border-radius:10px;font-family:inherit;}
+  .date-edit{width:auto;padding:3px 6px;font-size:11px;border:1px solid var(--steel);border-radius:10px;}
   .del{background:none;color:var(--ink-soft);font-size:18px;padding:2px 6px;flex:none;line-height:1;}
   .empty{text-align:center;padding:26px 10px;color:var(--ink-soft);font-size:13px;border:1px dashed var(--line);border-radius:var(--radius);}
   .loading{padding:40px;text-align:center;color:var(--ink-soft);font-size:13px;}
@@ -112,6 +115,7 @@
   let sha = null;
   let filter = 'all';
   let scope = 'all'; // all | mine | delegated | <nombre de responsable>
+  let editingDate = new Set();
   let loaded = false;
   let showSettings = !cfg;
   let syncStatus = 'idle'; // idle | busy | ok | err
@@ -243,6 +247,10 @@
     if(it){ it.estatus = it.estatus==='cerrado' ? 'abierto' : 'cerrado'; scheduleSave(); render(); }
   }
   function removeItem(id){ items = items.filter(i=>i.id!==id); scheduleSave(); render(); }
+  function updateFecha(id, nuevaFecha){
+    const it = items.find(i=>i.id===id);
+    if(it){ it.fecha = nuevaFecha; scheduleSave(); }
+  }
 
   async function connect(owner, repo, token){
     cfg = { owner: owner.trim(), repo: repo.trim(), token: token.trim() };
@@ -378,6 +386,9 @@
   function cardHtml(it){
     const b = bucketOf(it);
     const fechaTxt = it.fecha ? new Date(it.fecha+'T00:00:00').toLocaleDateString('es-MX',{day:'numeric',month:'short'}) : '';
+    const dateArea = editingDate.has(it.id)
+      ? `<input type="date" class="date-edit" data-id="${it.id}" value="${it.fecha||''}" />`
+      : `<button class="edit-date-btn" data-id="${it.id}" data-action="editdate">${fechaTxt || 'Agregar fecha'} ✎</button>`;
     return `<div class="card ${b}">
       <div class="check ${it.estatus==='cerrado'?'on':''}" data-id="${it.id}" data-action="toggle">${it.estatus==='cerrado'?'✓':''}</div>
       <div class="card-body">
@@ -385,7 +396,7 @@
         <div class="card-meta">
           ${it.responsable ? `<span class="tag origen">Delegada: ${esc(it.responsable)}</span>` : ''}
           <span class="tag prioridad-${it.prioridad}">${it.prioridad}</span>
-          ${fechaTxt ? `<span class="fecha-txt">${fechaTxt}</span>` : ''}
+          ${dateArea}
         </div>
       </div>
       <button class="del" data-id="${it.id}" data-action="del" title="Eliminar">×</button>
@@ -429,6 +440,12 @@
   document.addEventListener('click', function(e){
     const t = e.target;
     if(t.getAttribute && t.getAttribute('data-action')==='toggle') toggleClose(t.getAttribute('data-id'));
+    if(t.getAttribute && t.getAttribute('data-action')==='editdate'){
+      editingDate.add(t.getAttribute('data-id'));
+      render();
+      const inp = document.querySelector('.date-edit');
+      if(inp && inp.showPicker){ try{ inp.showPicker(); }catch(e){} }
+    }
     if(t.getAttribute && t.getAttribute('data-action')==='del'){
       const it = items.find(i=>i.id===t.getAttribute('data-id'));
       const nombre = it ? it.texto : 'este pendiente';
@@ -437,6 +454,22 @@
       }
     }
   });
+  document.addEventListener('change', function(e){
+    const t = e.target;
+    if(t.classList && t.classList.contains('date-edit')){
+      const id = t.getAttribute('data-id');
+      updateFecha(id, t.value);
+      editingDate.delete(id);
+      render();
+    }
+  });
+  document.addEventListener('blur', function(e){
+    const t = e.target;
+    if(t.classList && t.classList.contains('date-edit') && editingDate.has(t.getAttribute('data-id'))){
+      editingDate.delete(t.getAttribute('data-id'));
+      render();
+    }
+  }, true);
   document.addEventListener('visibilitychange', ()=>{ if(document.visibilityState==='visible') refreshFromRemote(); });
   window.addEventListener('focus', ()=>refreshFromRemote());
 

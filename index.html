@@ -145,7 +145,8 @@
   function utf8ToB64(str){ return btoa(String.fromCharCode(...new TextEncoder().encode(str))); }
   function b64ToUtf8(b64){ return new TextDecoder().decode(Uint8Array.from(atob(b64.replace(/\n/g,'')), c=>c.charCodeAt(0))); }
 
-  function apiUrl(){ return `https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${DATA_PATH}`; }
+  const DATA_BRANCH = 'data';
+  function apiUrl(){ return `https://api.github.com/repos/${cfg.owner}/${cfg.repo}/contents/${DATA_PATH}?ref=${DATA_BRANCH}`; }
   function apiHeaders(extra){
     return Object.assign({ Authorization: `token ${cfg.token}`, Accept: 'application/vnd.github+json' }, extra||{});
   }
@@ -160,7 +161,7 @@
   }
 
   async function ghSave(list, prevSha){
-    const body = { message: 'Actualizar pendientes', content: utf8ToB64(JSON.stringify(list, null, 2)) };
+    const body = { message: 'Actualizar pendientes', content: utf8ToB64(JSON.stringify(list, null, 2)), branch: DATA_BRANCH };
     if(prevSha) body.sha = prevSha;
     const res = await fetch(apiUrl(), {
       method: 'PUT',

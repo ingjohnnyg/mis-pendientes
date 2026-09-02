@@ -1,5 +1,14 @@
 [
   {
+    "id": "p1788310524091v6l5n",
+    "texto": "Mejora para flejar vagones",
+    "responsable": "Gonzalo M",
+    "prioridad": "media",
+    "fecha": "2026-09-18",
+    "estatus": "abierto",
+    "creado": "2026-09-01"
+  },
+  {
     "id": "p17883104867534y81a",
     "texto": "Reactivacion de chiller",
     "responsable": "Hector M",

@@ -1,5 +1,14 @@
 [
   {
+    "id": "p1788310812899c3yz1",
+    "texto": "Programas de reconocimiento",
+    "responsable": "Aldo M",
+    "prioridad": "media",
+    "fecha": "2026-09-04",
+    "estatus": "abierto",
+    "creado": "2026-09-01"
+  },
+  {
     "id": "p17883107892990s8ic",
     "texto": "Actualizar dashboard de celda modelo y presentar data a Aldo",
     "responsable": "",

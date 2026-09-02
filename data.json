@@ -1,5 +1,14 @@
 [
   {
+    "id": "p1788310568031no76a",
+    "texto": "Seguimiento: identificacion material de clamshell",
+    "responsable": "Hector M",
+    "prioridad": "media",
+    "fecha": "2026-09-03",
+    "estatus": "abierto",
+    "creado": "2026-09-01"
+  },
+  {
     "id": "p1788310524091v6l5n",
     "texto": "Mejora para flejar vagones",
     "responsable": "Gonzalo M",

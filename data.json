@@ -1,5 +1,14 @@
 [
   {
+    "id": "p1788311698466r3wid",
+    "texto": "Entrega de turno",
+    "responsable": "",
+    "prioridad": "media",
+    "fecha": "2026-09-04",
+    "estatus": "abierto",
+    "creado": "2026-09-01"
+  },
+  {
     "id": "p17883111056260k1yw",
     "texto": "Std work del supv",
     "responsable": "",

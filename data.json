@@ -1,5 +1,14 @@
 [
   {
+    "id": "p1788310319518f5bsc",
+    "texto": "Documentacion de validacion de banda blanca (Marian)",
+    "responsable": "Iran M",
+    "prioridad": "media",
+    "fecha": "2026-09-04",
+    "estatus": "abierto",
+    "creado": "2026-09-01"
+  },
+  {
     "id": "p1787784500913o0p9q",
     "texto": "revisar conteos ciclicos historico tendencia y logica, donde se va el conteo ciclico y shrink",
     "responsable": "",

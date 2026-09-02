@@ -1,5 +1,14 @@
 [
   {
+    "id": "p1788386846187il6sj",
+    "texto": "Limpieza y reacondicionamiento de maquina Anderson",
+    "responsable": "Jesus Gonzalez",
+    "prioridad": "media",
+    "fecha": "2026-09-03",
+    "estatus": "abierto",
+    "creado": "2026-09-02"
+  },
+  {
     "id": "p17883233576138ha0i",
     "texto": "Seguimiento: esponjas para dados de corte y consumibles",
     "responsable": "",

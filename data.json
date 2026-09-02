@@ -1,5 +1,14 @@
 [
   {
+    "id": "p17883107892990s8ic",
+    "texto": "Actualizar dashboard de celda modelo y presentar data a Aldo",
+    "responsable": "",
+    "prioridad": "alta",
+    "fecha": "2026-09-04",
+    "estatus": "abierto",
+    "creado": "2026-09-01"
+  },
+  {
     "id": "p1788310747058snox2",
     "texto": "Llenar datos de OEE y promedio de cambio de modelos en dashboard",
     "responsable": "",

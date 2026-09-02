@@ -1,5 +1,14 @@
 [
   {
+    "id": "p1788310747058snox2",
+    "texto": "Llenar datos de OEE y promedio de cambio de modelos en dashboard",
+    "responsable": "",
+    "prioridad": "media",
+    "fecha": "2026-09-01",
+    "estatus": "abierto",
+    "creado": "2026-09-01"
+  },
+  {
     "id": "p1788310715245tyfsp",
     "texto": "Cuadras datos de scrap por semana (meta y actual)",
     "responsable": "",

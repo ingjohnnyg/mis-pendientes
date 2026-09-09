@@ -1,5 +1,14 @@
 [
   {
+    "id": "p1788920081165pfbvv",
+    "texto": "Correcto procedimiento para reuso de banda blanca",
+    "responsable": "Iran M",
+    "prioridad": "media",
+    "fecha": "2026-09-10",
+    "estatus": "abierto",
+    "creado": "2026-09-08"
+  },
+  {
     "id": "p1788919941509gn6nb",
     "texto": "Correcto manejo de ARTs",
     "responsable": "Hector Mercado",

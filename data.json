@@ -1,5 +1,14 @@
 [
   {
+    "id": "p1788919941509gn6nb",
+    "texto": "Correcto manejo de ARTs",
+    "responsable": "Hector Mercado",
+    "prioridad": "media",
+    "fecha": "2026-09-09",
+    "estatus": "abierto",
+    "creado": "2026-09-08"
+  },
+  {
     "id": "p1788386846187il6sj",
     "texto": "Limpieza y reacondicionamiento de maquina Anderson",
     "responsable": "Jesus Gonzalez",

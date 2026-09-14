@@ -1,11 +1,272 @@
 [
   {
+    "id": "p1788920411466jxtix",
+    "texto": "Plan para clamshell?",
+    "responsable": "",
+    "prioridad": "baja",
+    "fecha": "2026-09-17",
+    "estatus": "abierto",
+    "creado": "2026-09-08"
+  },
+  {
+    "id": "p1788920272575ul8vh",
+    "texto": "Caso Griselda y Esmeralda",
+    "responsable": "",
+    "prioridad": "alta",
+    "fecha": "2026-09-14",
+    "estatus": "abierto",
+    "creado": "2026-09-08"
+  },
+  {
+    "id": "p1788920081165pfbvv",
+    "texto": "Correcto procedimiento para reuso de banda blanca",
+    "responsable": "Iran M",
+    "prioridad": "media",
+    "fecha": "2026-09-14",
+    "estatus": "abierto",
+    "creado": "2026-09-08"
+  },
+  {
+    "id": "p1788919941509gn6nb",
+    "texto": "Correcto manejo de ARTs",
+    "responsable": "Hector Mercado",
+    "prioridad": "media",
+    "fecha": "2026-09-14",
+    "estatus": "abierto",
+    "creado": "2026-09-08"
+  },
+  {
+    "id": "p1788386846187il6sj",
+    "texto": "Limpieza y reacondicionamiento de maquina Anderson",
+    "responsable": "Jesus Gonzalez",
+    "prioridad": "media",
+    "fecha": "2026-09-17",
+    "estatus": "abierto",
+    "creado": "2026-09-02"
+  },
+  {
+    "id": "p17883233576138ha0i",
+    "texto": "Seguimiento: esponjas para dados de corte y consumibles",
+    "responsable": "",
+    "prioridad": "alta",
+    "fecha": "2026-09-17",
+    "estatus": "abierto",
+    "creado": "2026-09-01"
+  },
+  {
+    "id": "p1788322325338m5mfj",
+    "texto": "Seguimiento: esponjas para dados de corte",
+    "responsable": "Jahaziel",
+    "prioridad": "alta",
+    "fecha": "2026-09-02",
+    "estatus": "cerrado",
+    "creado": "2026-09-01"
+  },
+  {
+    "id": "p1788311946531s6qze",
+    "texto": "Plan Widman + Hang",
+    "responsable": "",
+    "prioridad": "alta",
+    "fecha": "2026-09-18",
+    "estatus": "abierto",
+    "creado": "2026-09-01"
+  },
+  {
+    "id": "p1788311698466r3wid",
+    "texto": "Entrega de turno",
+    "responsable": "",
+    "prioridad": "media",
+    "fecha": "2026-09-04",
+    "estatus": "abierto",
+    "creado": "2026-09-01"
+  },
+  {
+    "id": "p17883111056260k1yw",
+    "texto": "Std work del supv",
+    "responsable": "",
+    "prioridad": "alta",
+    "fecha": "2026-09-14",
+    "estatus": "abierto",
+    "creado": "2026-09-01"
+  },
+  {
+    "id": "p1788310812899c3yz1",
+    "texto": "Programas de reconocimiento",
+    "responsable": "Aldo M",
+    "prioridad": "media",
+    "fecha": "2026-09-18",
+    "estatus": "abierto",
+    "creado": "2026-09-01"
+  },
+  {
+    "id": "p17883107892990s8ic",
+    "texto": "Actualizar dashboard de celda modelo y presentar data a Aldo",
+    "responsable": "",
+    "prioridad": "alta",
+    "fecha": "2026-09-04",
+    "estatus": "abierto",
+    "creado": "2026-09-01"
+  },
+  {
+    "id": "p1788310747058snox2",
+    "texto": "Llenar datos de OEE y promedio de cambio de modelos en dashboard",
+    "responsable": "",
+    "prioridad": "media",
+    "fecha": "2026-09-01",
+    "estatus": "cerrado",
+    "creado": "2026-09-01"
+  },
+  {
+    "id": "p1788310715245tyfsp",
+    "texto": "Cuadras datos de scrap por semana (meta y actual)",
+    "responsable": "",
+    "prioridad": "media",
+    "fecha": "2026-09-18",
+    "estatus": "abierto",
+    "creado": "2026-09-01"
+  },
+  {
+    "id": "p1788310676308f5nz3",
+    "texto": "Supervisor WI: Abrir vacante ya?",
+    "responsable": "",
+    "prioridad": "alta",
+    "fecha": "2026-09-21",
+    "estatus": "abierto",
+    "creado": "2026-09-01"
+  },
+  {
+    "id": "p1788310638512slwme",
+    "texto": "Sub kpi set ups",
+    "responsable": "",
+    "prioridad": "media",
+    "fecha": "2026-09-21",
+    "estatus": "abierto",
+    "creado": "2026-09-01"
+  },
+  {
+    "id": "p1788310610297im6bh",
+    "texto": "Hacer oficial con supervisores plan de plantilla futura e implementar subkpi",
+    "responsable": "",
+    "prioridad": "alta",
+    "fecha": "2026-09-07",
+    "estatus": "cerrado",
+    "creado": "2026-09-01"
+  },
+  {
+    "id": "p1788310568031no76a",
+    "texto": "Seguimiento: identificacion material de clamshell",
+    "responsable": "Hector M",
+    "prioridad": "media",
+    "fecha": "2026-09-03",
+    "estatus": "cerrado",
+    "creado": "2026-09-01"
+  },
+  {
+    "id": "p1788310524091v6l5n",
+    "texto": "Mejora para flejar vagones",
+    "responsable": "Gonzalo M",
+    "prioridad": "media",
+    "fecha": "2026-09-18",
+    "estatus": "abierto",
+    "creado": "2026-09-01"
+  },
+  {
+    "id": "p17883104867534y81a",
+    "texto": "Reactivacion de chiller",
+    "responsable": "Hector M",
+    "prioridad": "media",
+    "fecha": "2026-09-15",
+    "estatus": "abierto",
+    "creado": "2026-09-01"
+  },
+  {
+    "id": "p1788310319518f5bsc",
+    "texto": "Documentacion de validacion de banda blanca (Marian)",
+    "responsable": "Iran M",
+    "prioridad": "media",
+    "fecha": "2026-09-14",
+    "estatus": "abierto",
+    "creado": "2026-09-01"
+  },
+  {
+    "id": "p1787784500913o0p9q",
+    "texto": "revisar conteos ciclicos historico tendencia y logica, donde se va el conteo ciclico y shrink",
+    "responsable": "",
+    "prioridad": "media",
+    "fecha": "2026-08-28",
+    "estatus": "cerrado",
+    "creado": "2026-08-26"
+  },
+  {
+    "id": "p1787699769103nevli",
+    "texto": "agregar kpi de plantilla a dashboard operaciones",
+    "responsable": "",
+    "prioridad": "media",
+    "fecha": "2026-09-21",
+    "estatus": "abierto",
+    "creado": "2026-08-25"
+  },
+  {
+    "id": "p1787585620508w49h2",
+    "texto": "Banda nueva documentada",
+    "responsable": "",
+    "prioridad": "media",
+    "fecha": "2026-08-24",
+    "estatus": "cerrado",
+    "creado": "2026-08-24"
+  },
+  {
+    "id": "p1787357624604jp6u1",
+    "texto": "Plande 90 dias",
+    "responsable": "",
+    "prioridad": "alta",
+    "fecha": "2026-08-21",
+    "estatus": "cerrado",
+    "creado": "2026-08-21"
+  },
+  {
+    "id": "p17873548920070xsxc",
+    "texto": "PDCA cortadoras de panel (seguimiento)",
+    "responsable": "",
+    "prioridad": "alta",
+    "fecha": "2026-09-23",
+    "estatus": "abierto",
+    "creado": "2026-08-21"
+  },
+  {
+    "id": "p1787354364559ofode",
+    "texto": "Horarios para firma de convenios individuales",
+    "responsable": "",
+    "prioridad": "alta",
+    "fecha": "2026-08-24",
+    "estatus": "cerrado",
+    "creado": "2026-08-21"
+  },
+  {
+    "id": "p17864751255274e54r",
+    "texto": "Entregar marcadores a Araceli",
+    "responsable": "",
+    "prioridad": "media",
+    "fecha": "2026-08-11",
+    "estatus": "cerrado",
+    "creado": "2026-08-11"
+  },
+  {
+    "id": "p1786475110237fvtef",
+    "texto": "Revisar si hace falta contratar personal temporal para cortadoras",
+    "responsable": "",
+    "prioridad": "media",
+    "fecha": "2026-08-14",
+    "estatus": "cerrado",
+    "creado": "2026-08-11"
+  },
+  {
     "id": "p1786146142295pbr8k",
     "texto": "Plan de 5S en maquina Jumbo, accidente",
     "responsable": "",
     "prioridad": "alta",
-    "fecha": "2026-08-10",
-    "estatus": "abierto",
+    "fecha": "2026-08-17",
+    "estatus": "cerrado",
     "creado": "2026-08-07"
   },
   {
@@ -13,8 +274,8 @@
     "texto": "Actualizar lay out para juntar maquinas hang y widmann 10",
     "responsable": "",
     "prioridad": "media",
-    "fecha": "2026-08-10",
-    "estatus": "abierto",
+    "fecha": "2026-08-13",
+    "estatus": "cerrado",
     "creado": "2026-08-05"
   },
   {
@@ -40,7 +301,7 @@
     "texto": "Revisar replenishment de dados chinos con Enrique",
     "responsable": "",
     "prioridad": "alta",
-    "fecha": "2026-08-10",
+    "fecha": "2026-09-16",
     "estatus": "abierto",
     "creado": "2026-08-04"
   },
@@ -49,7 +310,7 @@
     "texto": "Plan para restablecer operacion optima de Anderson",
     "responsable": "Jesus Gonzalez",
     "prioridad": "alta",
-    "fecha": "2026-08-18",
+    "fecha": "2026-09-22",
     "estatus": "abierto",
     "creado": "2026-08-04"
   },
@@ -67,7 +328,7 @@
     "texto": "Seguimiento a requi de tablet para carpetas",
     "responsable": "",
     "prioridad": "media",
-    "fecha": "2026-08-10",
+    "fecha": "2026-09-18",
     "estatus": "abierto",
     "creado": "2026-08-04"
   },
@@ -76,8 +337,8 @@
     "texto": "Programas de reconocimiento",
     "responsable": "",
     "prioridad": "media",
-    "fecha": "2026-08-14",
-    "estatus": "abierto",
+    "fecha": "2026-09-18",
+    "estatus": "cerrado",
     "creado": "2026-08-04"
   },
   {
@@ -112,7 +373,7 @@
     "texto": "Junta de 5S en WI",
     "responsable": "",
     "prioridad": "alta",
-    "fecha": "2026-08-17",
+    "fecha": "2026-09-21",
     "estatus": "abierto",
     "creado": "2026-08-03"
   },
@@ -121,8 +382,8 @@
     "texto": "Agendar limpieza de ductos en binders",
     "responsable": "",
     "prioridad": "alta",
-    "fecha": "2026-08-07",
-    "estatus": "abierto",
+    "fecha": "2026-08-13",
+    "estatus": "cerrado",
     "creado": "2026-08-03"
   },
   {
@@ -139,7 +400,7 @@
     "texto": "Sub-KPI Hrs productivas vs no productivas",
     "responsable": "",
     "prioridad": "media",
-    "fecha": "2026-08-12",
+    "fecha": "2026-09-22",
     "estatus": "abierto",
     "creado": "2026-08-03"
   },
@@ -148,7 +409,7 @@
     "texto": "Revision de procedimiento para compra de colorante que ya ha sido stock out 2 veces",
     "responsable": "Jesus Gonzalez",
     "prioridad": "media",
-    "fecha": "2026-08-18",
+    "fecha": "2026-09-23",
     "estatus": "abierto",
     "creado": "2026-08-03"
   },
@@ -157,8 +418,8 @@
     "texto": "Cambio de turno para 2do turno",
     "responsable": "",
     "prioridad": "media",
-    "fecha": "2026-08-10",
-    "estatus": "abierto",
+    "fecha": "2026-08-17",
+    "estatus": "cerrado",
     "creado": "2026-08-03"
   },
   {
@@ -166,7 +427,7 @@
     "texto": "Popuesta para mueble de etiquetas en hang",
     "responsable": "Hector Mercado",
     "prioridad": "media",
-    "fecha": "2026-08-10",
+    "fecha": "2026-09-21",
     "estatus": "abierto",
     "creado": "2026-08-03"
   },
@@ -176,7 +437,7 @@
     "responsable": "Hector Mercado",
     "prioridad": "media",
     "fecha": "2026-08-10",
-    "estatus": "abierto",
+    "estatus": "cerrado",
     "creado": "2026-08-03"
   }
 ]

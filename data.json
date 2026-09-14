@@ -266,8 +266,9 @@
     "responsable": "",
     "prioridad": "alta",
     "fecha": "2026-08-10",
-    "estatus": "abierto",
-    "creado": "2026-08-07"
+    "estatus": "cerrado",
+    "creado": "2026-08-07",
+    "actualizado": 1789362102493
   },
   {
     "id": "p17859480791577wnbt",

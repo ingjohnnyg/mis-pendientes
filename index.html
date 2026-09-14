@@ -56,7 +56,7 @@
            text-transform:uppercase;font-size:12.5px;padding:9px 18px;border:none;cursor:pointer;}
 
   /* focus row */
-  .focus-row{display:grid;grid-template-columns:repeat(4,1fr);margin:0 20px;margin-top:16px;border:1px solid var(--line);}
+  .focus-row{display:grid;grid-template-columns:repeat(5,1fr);margin:0 20px;margin-top:16px;border:1px solid var(--line);}
   .focus-cell{padding:14px 12px;border-right:1px solid var(--line);}
   .focus-cell:last-child{border-right:none;}
   .focus-cell.late{background:var(--late);color:var(--late-ink);}
@@ -74,6 +74,13 @@
   .load-bar .seg.open{background:var(--steel-300);}
   .load-total{width:16px;flex:none;font-size:11px;text-align:right;color:var(--ink-2);}
   .load-empty{color:var(--ink-3);font-size:11px;}
+  .due-chart{display:flex;align-items:flex-end;gap:5px;height:58px;}
+  .due-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;}
+  .due-n{font-size:10px;color:var(--ink-2);margin-bottom:2px;min-height:12px;}
+  .due-bar-wrap{width:100%;display:flex;justify-content:center;align-items:flex-end;height:36px;}
+  .due-bar{width:55%;background:var(--steel-300);min-height:3px;}
+  .due-bar.zero{background:var(--line-soft);}
+  .due-lbl{margin-top:3px;font-size:9.5px;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-3);}
 
   /* columns */
   .columns{display:grid;grid-template-columns:1fr 1fr;margin:0 20px 30px;border:1px solid var(--line);border-top:none;}
@@ -137,7 +144,7 @@
 
   @media (max-width:760px){
     .focus-row{grid-template-columns:repeat(3,1fr);}
-    .load-cell{display:none;}
+    .load-cell,.due-cell{display:none;}
     .columns{grid-template-columns:1fr;}
     .col{border-right:none;border-bottom:1px solid var(--line);}
     .col:last-child{border-bottom:none;}
@@ -544,6 +551,28 @@
     return `<div class="load-title">Carga por persona</div>${rows}`;
   }
 
+  function dueByDayHtml(open){
+    const start = new Date(); start.setHours(0,0,0,0);
+    const days = [];
+    for(let i=0;i<7;i++){
+      const d = new Date(start); d.setDate(d.getDate()+i);
+      const iso = d.toISOString().slice(0,10);
+      const count = open.filter(it=>it.fecha===iso).length;
+      const label = i===0 ? 'Hoy' : ['dom','lun','mar','mié','jue','vie','sáb'][d.getDay()];
+      days.push({count, label});
+    }
+    const max = Math.max(1, ...days.map(d=>d.count));
+    const bars = days.map(d=>{
+      const h = d.count ? Math.max(6, Math.round(d.count/max*36)) : 3;
+      return `<div class="due-col">
+        <div class="due-n">${d.count||''}</div>
+        <div class="due-bar-wrap"><div class="due-bar ${d.count?'':'zero'}" style="height:${h}px"></div></div>
+        <div class="due-lbl">${d.label}</div>
+      </div>`;
+    }).join('');
+    return `<div class="load-title">Vencen próx. 7 días</div><div class="due-chart">${bars}</div>`;
+  }
+
   function render(){
     const app = document.getElementById('app');
     if(!loaded){ app.innerHTML = '<div class="loading">Cargando…</div>'; return; }
@@ -612,6 +641,7 @@
           <div class="focus-l" style="color:var(--ink-2)">Esta semana</div>
         </div>
         <div class="focus-cell paper load-cell">${loadCellHtml(open)}</div>
+        <div class="focus-cell paper due-cell">${dueByDayHtml(open)}</div>
       </div>
 
       <div class="scope-chips">

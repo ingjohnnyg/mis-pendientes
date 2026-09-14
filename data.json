@@ -265,8 +265,8 @@
     "texto": "Plan de 5S en maquina Jumbo, accidente",
     "responsable": "",
     "prioridad": "alta",
-    "fecha": "2026-08-17",
-    "estatus": "cerrado",
+    "fecha": "2026-08-10",
+    "estatus": "abierto",
     "creado": "2026-08-07"
   },
   {
@@ -274,8 +274,8 @@
     "texto": "Actualizar lay out para juntar maquinas hang y widmann 10",
     "responsable": "",
     "prioridad": "media",
-    "fecha": "2026-08-13",
-    "estatus": "cerrado",
+    "fecha": "2026-08-10",
+    "estatus": "abierto",
     "creado": "2026-08-05"
   },
   {
@@ -301,7 +301,7 @@
     "texto": "Revisar replenishment de dados chinos con Enrique",
     "responsable": "",
     "prioridad": "alta",
-    "fecha": "2026-09-16",
+    "fecha": "2026-08-10",
     "estatus": "abierto",
     "creado": "2026-08-04"
   },
@@ -310,7 +310,7 @@
     "texto": "Plan para restablecer operacion optima de Anderson",
     "responsable": "Jesus Gonzalez",
     "prioridad": "alta",
-    "fecha": "2026-09-22",
+    "fecha": "2026-08-18",
     "estatus": "abierto",
     "creado": "2026-08-04"
   },
@@ -328,7 +328,7 @@
     "texto": "Seguimiento a requi de tablet para carpetas",
     "responsable": "",
     "prioridad": "media",
-    "fecha": "2026-09-18",
+    "fecha": "2026-08-10",
     "estatus": "abierto",
     "creado": "2026-08-04"
   },
@@ -337,8 +337,8 @@
     "texto": "Programas de reconocimiento",
     "responsable": "",
     "prioridad": "media",
-    "fecha": "2026-09-18",
-    "estatus": "cerrado",
+    "fecha": "2026-08-14",
+    "estatus": "abierto",
     "creado": "2026-08-04"
   },
   {
@@ -373,17 +373,18 @@
     "texto": "Junta de 5S en WI",
     "responsable": "",
     "prioridad": "alta",
-    "fecha": "2026-09-21",
+    "fecha": "2026-08-17",
     "estatus": "abierto",
-    "creado": "2026-08-03"
+    "creado": "2026-08-03",
+    "actualizado": 1789362040865
   },
   {
     "id": "p17858216201753a51h",
     "texto": "Agendar limpieza de ductos en binders",
     "responsable": "",
     "prioridad": "alta",
-    "fecha": "2026-08-13",
-    "estatus": "cerrado",
+    "fecha": "2026-08-07",
+    "estatus": "abierto",
     "creado": "2026-08-03"
   },
   {
@@ -400,7 +401,7 @@
     "texto": "Sub-KPI Hrs productivas vs no productivas",
     "responsable": "",
     "prioridad": "media",
-    "fecha": "2026-09-22",
+    "fecha": "2026-08-12",
     "estatus": "abierto",
     "creado": "2026-08-03"
   },
@@ -409,7 +410,7 @@
     "texto": "Revision de procedimiento para compra de colorante que ya ha sido stock out 2 veces",
     "responsable": "Jesus Gonzalez",
     "prioridad": "media",
-    "fecha": "2026-09-23",
+    "fecha": "2026-08-18",
     "estatus": "abierto",
     "creado": "2026-08-03"
   },
@@ -418,8 +419,8 @@
     "texto": "Cambio de turno para 2do turno",
     "responsable": "",
     "prioridad": "media",
-    "fecha": "2026-08-17",
-    "estatus": "cerrado",
+    "fecha": "2026-08-10",
+    "estatus": "abierto",
     "creado": "2026-08-03"
   },
   {
@@ -427,7 +428,7 @@
     "texto": "Popuesta para mueble de etiquetas en hang",
     "responsable": "Hector Mercado",
     "prioridad": "media",
-    "fecha": "2026-09-21",
+    "fecha": "2026-08-10",
     "estatus": "abierto",
     "creado": "2026-08-03"
   },
@@ -437,7 +438,7 @@
     "responsable": "Hector Mercado",
     "prioridad": "media",
     "fecha": "2026-08-10",
-    "estatus": "cerrado",
+    "estatus": "abierto",
     "creado": "2026-08-03"
   }
 ]

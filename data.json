@@ -449,7 +449,8 @@
     "responsable": "Hector Mercado",
     "prioridad": "media",
     "fecha": "2026-08-10",
-    "estatus": "abierto",
-    "creado": "2026-08-03"
+    "estatus": "cerrado",
+    "creado": "2026-08-03",
+    "actualizado": 1789362870623
   }
 ]

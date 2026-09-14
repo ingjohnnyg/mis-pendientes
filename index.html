@@ -243,7 +243,8 @@
     syncStatus = 'busy'; if(!initial) render();
     try{
       const r = await ghLoad();
-      items = r.items; sha = r.sha;
+      items = initial ? r.items : mergeItems(r.items, items);
+      sha = r.sha;
       cacheLocal();
       syncStatus = 'ok'; syncError='';
       render();
@@ -272,6 +273,7 @@
       if(e && e.conflict){
         try{
           const r = await ghLoad();
+          items = mergeItems(r.items, items);
           sha = r.sha;
           const newSha = await ghSave(items, sha);
           sha = newSha; cacheLocal();
@@ -289,29 +291,39 @@
   }
 
   function addItem(texto, responsable, prioridad, fecha){
-    items.unshift({ id:'p'+Date.now()+Math.random().toString(36).slice(2,7), texto, responsable, prioridad, fecha, estatus:'abierto', creado: todayISO() });
+    items.unshift({ id:'p'+Date.now()+Math.random().toString(36).slice(2,7), texto, responsable, prioridad, fecha, estatus:'abierto', creado: todayISO(), actualizado: Date.now() });
     scheduleSave(); render();
   }
   function toggleClose(id){
     const it = items.find(i=>i.id===id);
-    if(it){ it.estatus = it.estatus==='cerrado' ? 'abierto' : 'cerrado'; scheduleSave(); render(); }
+    if(it){ it.estatus = it.estatus==='cerrado' ? 'abierto' : 'cerrado'; it.actualizado = Date.now(); scheduleSave(); render(); }
   }
   function removeItem(id){ items = items.filter(i=>i.id!==id); scheduleSave(); render(); }
   function updateFecha(id, nuevaFecha){
     const it = items.find(i=>i.id===id);
-    if(it){ it.fecha = nuevaFecha; scheduleSave(); }
+    if(it){ it.fecha = nuevaFecha; it.actualizado = Date.now(); scheduleSave(); }
   }
   function updateTexto(id, nuevoTexto){
     const it = items.find(i=>i.id===id);
-    if(it && nuevoTexto.trim()){ it.texto = nuevoTexto.trim(); scheduleSave(); render(); }
+    if(it && nuevoTexto.trim()){ it.texto = nuevoTexto.trim(); it.actualizado = Date.now(); scheduleSave(); render(); }
   }
   function updateResponsable(id, nuevoResp){
     const it = items.find(i=>i.id===id);
-    if(it){ it.responsable = nuevoResp.trim(); scheduleSave(); render(); }
+    if(it){ it.responsable = nuevoResp.trim(); it.actualizado = Date.now(); scheduleSave(); render(); }
   }
   function updatePrioridad(id, nueva){
     const it = items.find(i=>i.id===id);
-    if(it){ it.prioridad = nueva; scheduleSave(); render(); }
+    if(it){ it.prioridad = nueva; it.actualizado = Date.now(); scheduleSave(); render(); }
+  }
+
+  function mergeItems(remote, local){
+    const map = {};
+    (remote||[]).forEach(it=>{ map[it.id] = it; });
+    (local||[]).forEach(it=>{
+      const ex = map[it.id];
+      if(!ex || (it.actualizado||0) >= (ex.actualizado||0)) map[it.id] = it;
+    });
+    return Object.values(map);
   }
 
   async function connect(owner, repo, token){

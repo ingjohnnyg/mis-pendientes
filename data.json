@@ -1,5 +1,15 @@
 [
   {
+    "id": "p1792433290675kx2ip",
+    "texto": "plan para mejora de captura",
+    "responsable": "",
+    "prioridad": "media",
+    "fecha": "2027-01-11",
+    "estatus": "abierto",
+    "creado": "2026-10-19",
+    "actualizado": 1792433290675
+  },
+  {
     "id": "p1791483635176tgno0",
     "texto": "Ver con finanzas la diferencia de scorecard vs red tag -",
     "responsable": "",

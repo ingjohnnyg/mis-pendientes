@@ -248,8 +248,9 @@
     "responsable": "",
     "prioridad": "media",
     "fecha": "2026-09-21",
-    "estatus": "abierto",
-    "creado": "2026-08-25"
+    "estatus": "cerrado",
+    "creado": "2026-08-25",
+    "actualizado": 1792461616340
   },
   {
     "id": "p1787585620508w49h2",
